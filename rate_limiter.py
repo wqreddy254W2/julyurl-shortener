@@ -1,11 +1,12 @@
+import threading
 import time
 
 class RateLimiter:
     def __init__(self, limit=70, window=70):
         self.limit=limit
-        self.window=window
+        self.window_seconds=window_seconds
         self.request={}
-        
+        self._lock=theading.RLock()
         def allow(self, client):
             now=time.time()
             timestamps=self.requests.get(client,[])
